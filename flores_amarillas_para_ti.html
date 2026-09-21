@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>21 de Septiembre - Flores Amarillas para Ti 🌻</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            amberGlow: '#FFB703',
+            yellowSun: '#FFD700',
+            deepGold: '#FB8500',
+            darkObsidian: '#0B0B14',
+            darkCard: 'rgba(22, 20, 38, 0.75)',
+            goldBorder: 'rgba(255, 215, 0, 0.25)'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+            cursive: ['"Dancing Script"', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --gold-primary: #FFD700;
+      --gold-glow: rgba(255, 215, 0, 0.4);
+    }
+
+    body {
+      background-color: #0B0B14;
+      color: #F3F4F6;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Glassmorphism Styles */
+    .glass-panel {
+      background: rgba(18, 16, 32, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 215, 0, 0.1);
+    }
+
+    .glass-card {
+      background: rgba(28, 25, 48, 0.55);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 215, 0, 0.18);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(255, 215, 0, 0.45);
+      box-shadow: 0 6px 25px rgba(255, 215, 0, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Glowing Text & Elements */
+    .glow-text-gold {
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.6), 0 0 25px rgba(251, 133, 0, 0.4);
+    }
+
+    .glow-flower {
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5)) drop-shadow(0 0 30px rgba(255, 183, 3, 0.3));
+    }
+
+    /* Bouquet Swaying Animation */
+    @keyframes windSway {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    .animate-sway {
+      animation: windSway 6s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    /* Petal Pulse & Glow */
+    @keyframes petalPulse {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.04); filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+    }
+
+    .animate-pulse-flower {
+      animation: petalPulse 4s ease-in-out infinite;
+    }
+
+    /* 3D Envelope Styles */
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+
+    .envelope-wrapper {
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .envelope-flap {
+      transform-origin: top center;
+      transition: transform 0.6s ease-in-out 0.2s;
+    }
+
+    .envelope-open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .letter-paper {
+      transition: transform 0.6s ease-in-out 0.4s, opacity 0.5s ease;
+    }
+
+    .envelope-open .letter-paper {
+      transform: translateY(-120px) scale(1.02);
+      z-index: 30;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(11, 11, 20, 0.8);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.3);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 215, 0, 0.6);
+    }
+
+    /* Word Search Selection Grid */
+    .word-grid-cell {
+      user-select: none;
+      -webkit-user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .word-grid-cell.selected {
+      background: rgba(255, 215, 0, 0.35);
+      border-color: #FFD700;
+      color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    }
+
+    .word-grid-cell.found {
+      background: linear-gradient(135deg, #FFD700, #FB8500);
+      color: #0B0B14;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+      transform: scale(1.05);
+    }
+
+    /* Bloom Sparkle Effect */
+    @keyframes flowerBloom {
+      0% { transform: scale(0.2) rotate(-45deg); opacity: 0; }
+      70% { transform: scale(1.15) rotate(10deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .animate-bloom {
+      animation: flowerBloom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col md:flex-row relative">
+  <!-- Floating Background Particles Canvas -->
+  <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0 w-full h-full"></canvas>
+
+  <!-- Mobile Top Bar Navigation -->
+  <header class="md:hidden flex items-center justify-between p-4 glass-panel sticky top-0 z-50 border-b border-yellow-500/20">
+    <div class="flex items-center space-x-2">
+      <i class="fa-solid fa-sun text-yellow-400 text-xl animate-spin-slow"></i>
+      <span class="font-serif font-bold text-lg text-yellow-300">Flores Amarillas</span>
+    </div>
+    <button id="toggleMobileMenu" class="text-yellow-400 p-2 rounded-lg hover:bg-yellow-500/10 transition">
+      <i class="fa-solid fa-bars text-xl"></i>
+    </button>
+  </header>
+
+  <!-- Sidebar Navigation Container -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 md:w-72 glass-panel flex flex-col justify-between transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out md:static md:h-screen shrink-0 border-r border-yellow-500/20">
+    <div>
+      <!-- Header / Title -->
+      <div class="p-6 border-b border-yellow-500/20 text-center">
+        <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-tr from-yellow-500 to-amber-300 p-0.5 shadow-lg shadow-yellow-500/20 flex items-center justify-center">
+          <div class="w-full h-full bg-darkObsidian rounded-full flex items-center justify-center">
+            <i class="fa-solid fa-seedling text-2xl text-yellow-400"></i>
+          </div>
+        </div>
+        <h1 class="font-serif text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-200 to-yellow-500 glow-text-gold">
+          21 de Septiembre
+        </h1>
+        <p class="text-xs text-yellow-200/70 mt-1 italic">Para el amor de mi vida 💛</p>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="p-4 space-y-2">
+        <button data-tab="ramo" class="nav-btn active w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium transition duration-200 bg-yellow-500/20 text-yellow-300 border border-yellow-500/30">
+          <i class="fa-solid fa-spa text-yellow-400 text-lg w-6 text-center"></i>
+          <span>El Ramo Especial</span>
+        </button>
+
+        <button data-tab="carta" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium text-gray-300 hover:text-yellow-300 hover:bg-yellow-500/10 transition duration-200 border border-transparent">
+          <i class="fa-solid fa-envelope-open-text text-yellow-400/80 text-lg w-6 text-center"></i>
+          <span>Nuestra Carta</span>
+        </button>
+
+        <button data-tab="juego" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium text-gray-300 hover:text-yellow-300 hover:bg-yellow-500/10 transition duration-200 border border-transparent">
+          <i class="fa-solid fa-puzzle-piece text-yellow-400/80 text-lg w-6 text-center"></i>
+          <span>Jardín de Amar</span>
+        </button>
+
+        <button data-tab="promesas" class="nav-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium text-gray-300 hover:text-yellow-300 hover:bg-yellow-500/10 transition duration-200 border border-transparent">
+          <i class="fa-solid fa-wand-magic-sparkles text-yellow-400/80 text-lg w-6 text-center"></i>
+          <span>Jardín de Promesas</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Audio & Ambient Controls in Sidebar Footer -->
+    <div class="p-4 border-t border-yellow-500/20">
+      <div class="glass-card p-3 rounded-xl flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-music text-yellow-400 text-sm"></i>
+          <span class="text-xs text-gray-300">Efectos Sonoros</span>
+        </div>
+        <button id="toggleSoundBtn" class="w-10 h-6 bg-yellow-500/30 rounded-full flex items-center p-1 transition duration-300 justify-end">
+          <div id="soundDot" class="w-4 h-4 bg-yellow-400 rounded-full shadow-md"></div>
+        </button>
+      </div>
+      <p class="text-[10px] text-center text-gray-400 mt-3">Hecho con todo el amor del mundo ✨</p>
+    </div>
+  </aside>
+
+  <!-- Mobile Overlay -->
+  <div id="mobileOverlay" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden backdrop-blur-sm"></div>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 min-h-screen relative z-10 overflow-y-auto p-4 md:p-8 lg:p-10 flex flex-col items-center">
+    <div class="w-full max-w-4xl mx-auto space-y-8">
+
+      <!-- ================= TAB 1: EL RAMO ESPECIAL ================= -->
+      <section id="tab-ramo" class="tab-content block space-y-8 animate-fade-in">
+        
+        <!-- Main Bouquet Interactive Canvas Wrapper -->
+        <div class="glass-panel p-6 md:p-10 rounded-3xl relative overflow-hidden text-center flex flex-col items-center justify-center">
+          <!-- Glow Backdrop Effect -->
+          <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-yellow-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="mb-4">
+            <span class="inline-block py-1 px-4 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              Regalo Virtual • 21 de Septiembre
+            </span>
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-amber-300 glow-text-gold">
+              Flores Amarillas Eternas
+            </h2>
+            <p class="text-gray-300 text-sm md:text-base mt-2 max-w-lg mx-auto">
+              Haz clic sobre las flores para ver sus destellos brillantes y escuchar su melodía ✨
+            </p>
+          </div>
+
+          <!-- SVG Bouquet with Dynamic Interactive Flower Petals Spelling TE AMO -->
+          <div class="relative my-6 w-full max-w-md h-[380px] md:h-[440px] flex items-center justify-center">
+            <svg id="bouquetSvg" class="w-full h-full animate-sway glow-flower select-none overflow-visible" viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Radial Gradients for Flower Glow -->
+                <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFE066" />
+                  <stop offset="70%" stop-color="#FFB703" />
+                  <stop offset="100%" stop-color="#FB8500" />
+                </radialGradient>
+                <radialGradient id="petalGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#FFF59D" />
+                  <stop offset="60%" stop-color="#FFD700" />
+                  <stop offset="100%" stop-color="#F5A623" />
+                </radialGradient>
+                <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#4CAF50" />
+                  <stop offset="100%" stop-color="#1B5E20" />
+                </linearGradient>
+                <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#E53935" />
+                  <stop offset="50%" stop-color="#FF5252" />
+                  <stop offset="100%" stop-color="#B71C1C" />
+                </linearGradient>
+              </defs>
+
+              <!-- Stems -->
+              <g id="stems" stroke="url(#stemGrad)" stroke-width="8" stroke-linecap="round">
+                <path d="M 250 520 Q 230 380 140 220" />
+                <path d="M 250 520 Q 240 370 190 160" />
+                <path d="M 250 520 Q 250 360 250 120" />
+                <path d="M 250 520 Q 260 370 310 160" />
+                <path d="M 250 520 Q 270 380 360 220" />
+              </g>
+
+              <!-- Leaves -->
+              <g id="leaves" fill="#2E7D32" opacity="0.9">
+                <path d="M 210 420 Q 150 400 170 360 Q 210 390 210 420 Z" />
+                <path d="M 290 420 Q 350 400 330 360 Q 290 390 290 420 Z" />
+                <path d="M 230 460 Q 170 470 180 430 Q 220 440 230 460 Z" />
+                <path d="M 270 460 Q 330 470 320 430 Q 280 440 270 460 Z" />
+              </g>
+
+              <!-- Red Satin Ribbon Wrapping -->
+              <g id="ribbon">
+                <path d="M 215 480 C 240 500, 260 500, 285 480 L 295 530 C 265 540, 235 540, 205 530 Z" fill="url(#ribbonGrad)" />
+                <path d="M 250 500 Q 220 540 190 570 Q 210 580 240 540 Z" fill="url(#ribbonGrad)" />
+                <path d="M 250 500 Q 280 540 310 570 Q 290 580 260 540 Z" fill="url(#ribbonGrad)" />
+                <circle cx="250" cy="500" r="14" fill="#D32F2F" />
+              </g>
+
+              <!-- 5 Main Interactive Blooming Sunflower Units (Spelling T-E-A-M-O) -->
+              
+              <!-- Flower 1: "T" (Left Outer) -->
+              <g class="flower-node cursor-pointer transition-transform duration-300 hover:scale-110" data-letter="T" transform="translate(140, 220)">
+                <!-- Petals Circle -->
+                <g class="petals" fill="url(#petalGrad)">
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(0)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(30)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(60)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(90)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(120)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(150)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(180)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(210)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(240)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(270)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(300)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(330)" />
+                </g>
+                <circle cx="0" cy="0" r="28" fill="url(#centerGlow)" stroke="#795548" stroke-width="3" />
+                <text x="0" y="10" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="900" font-size="28" fill="#3E2723" class="select-none">T</text>
+              </g>
+
+              <!-- Flower 2: "E" (Top Left) -->
+              <g class="flower-node cursor-pointer transition-transform duration-300 hover:scale-110" data-letter="E" transform="translate(190, 150)">
+                <g class="petals" fill="url(#petalGrad)">
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(15)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(45)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(75)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(105)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(135)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(165)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(195)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(225)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(255)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(285)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(315)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(345)" />
+                </g>
+                <circle cx="0" cy="0" r="28" fill="url(#centerGlow)" stroke="#795548" stroke-width="3" />
+                <text x="0" y="10" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="900" font-size="28" fill="#3E2723" class="select-none">E</text>
+              </g>
+
+              <!-- Flower 3: "A" (Top Center) -->
+              <g class="flower-node cursor-pointer transition-transform duration-300 hover:scale-110" data-letter="A" transform="translate(250, 110)">
+                <g class="petals" fill="url(#petalGrad)">
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(0)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(30)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(60)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(90)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(120)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(150)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(180)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(210)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(240)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(270)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(300)" />
+                  <path d="M 0 0 M -14 -60 C -6 -80 6 -80 14 -60 C 22 -40 0 0 0 0 Z" transform="rotate(330)" />
+                </g>
+                <circle cx="0" cy="0" r="32" fill="url(#centerGlow)" stroke="#795548" stroke-width="3" />
+                <text x="0" y="11" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="900" font-size="32" fill="#3E2723" class="select-none">A</text>
+              </g>
+
+              <!-- Flower 4: "M" (Top Right) -->
+              <g class="flower-node cursor-pointer transition-transform duration-300 hover:scale-110" data-letter="M" transform="translate(310, 150)">
+                <g class="petals" fill="url(#petalGrad)">
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(10)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(40)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(70)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(100)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(130)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(160)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(190)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(220)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(250)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(280)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(310)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(340)" />
+                </g>
+                <circle cx="0" cy="0" r="28" fill="url(#centerGlow)" stroke="#795548" stroke-width="3" />
+                <text x="0" y="10" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="900" font-size="28" fill="#3E2723" class="select-none">M</text>
+              </g>
+
+              <!-- Flower 5: "O" (Right Outer) -->
+              <g class="flower-node cursor-pointer transition-transform duration-300 hover:scale-110" data-letter="O" transform="translate(360, 220)">
+                <g class="petals" fill="url(#petalGrad)">
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(0)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(30)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(60)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(90)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(120)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(150)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(180)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(210)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(240)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(270)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(300)" />
+                  <path d="M 0 0 M -12 -55 C -5 -75 5 -75 12 -55 C 20 -35 0 0 0 0 Z" transform="rotate(330)" />
+                </g>
+                <circle cx="0" cy="0" r="28" fill="url(#centerGlow)" stroke="#795548" stroke-width="3" />
+                <text x="0" y="10" text-anchor="middle" font-family="'Playfair Display', serif" font-weight="900" font-size="28" fill="#3E2723" class="select-none">O</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Interactive Spell Overlay Display -->
+          <div class="flex items-center justify-center space-x-2 my-2">
+            <span class="text-xs text-yellow-200/80 uppercase tracking-widest font-semibold">El mensaje en las flores:</span>
+            <span class="font-cursive text-2xl font-bold text-yellow-300 tracking-wider glow-text-gold">"TE AMO"</span>
+          </div>
+        </div>
+
+        <!-- Editable Romantic Message Block -->
+        <div class="glass-panel p-6 md:p-8 rounded-3xl relative">
+          <div class="flex items-center justify-between border-b border-yellow-500/20 pb-4 mb-4">
+            <div class="flex items-center space-x-3">
+              <i class="fa-solid fa-[#FFD700] fa-heart text-yellow-400 text-xl"></i>
+              <h3 class="font-serif font-bold text-lg md:text-xl text-yellow-200">Mensaje Especial de Septiembre</h3>
+            </div>
+            <button id="editMainTextBtn" class="px-3 py-1.5 rounded-lg bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 text-xs font-semibold border border-yellow-500/30 transition flex items-center space-x-1.5">
+              <i class="fa-solid fa-pen-to-square"></i>
+              <span id="editBtnLabel">Editar Mensaje</span>
+            </button>
+          </div>
+
+          <!-- Display Mode -->
+          <div id="mainTextDisplay" class="font-cursive text-xl md:text-2xl leading-relaxed text-yellow-100/90 whitespace-pre-line text-center py-2">
+            "En este 21 de septiembre, te regalo un ramo de flores amarillas que jamás se marchitarán. Cada pétalo lleva grabado un latido de mi corazón y la promesa de iluminar tus días siempre. Gracias por ser el sol más radiante de mi universo. Te amo infinitamente."
+          </div>
+
+          <!-- Edit Mode (Hidden initially) -->
+          <div id="mainTextEditContainer" class="hidden space-y-4">
+            <textarea id="mainTextInput" rows="5" class="w-full bg-darkObsidian/80 border border-yellow-500/40 rounded-xl p-4 text-yellow-100 font-cursive text-xl focus:outline-none focus:border-yellow-400 focus:ring-1 focus:ring-yellow-400 transition"></textarea>
+            <div class="flex justify-end space-x-3">
+              <button id="cancelMainTextBtn" class="px-4 py-2 rounded-xl bg-gray-700/50 hover:bg-gray-700 text-gray-300 text-xs font-semibold transition">Cancelar</button>
+              <button id="saveMainTextBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-darkObsidian font-bold text-xs transition shadow-lg shadow-yellow-500/20">Guardar Cambios</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: NUESTRA CARTA ================= -->
+      <section id="tab-carta" class="tab-content hidden space-y-8 animate-fade-in">
+        <div class="glass-panel p-6 md:p-10 rounded-3xl text-center space-y-6">
+          <div>
+            <span class="inline-block py-1 px-4 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              Sobre Secreto • Toca para abrir
+            </span>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-yellow-300 glow-text-gold">
+              Una Carta para Tu Corazón
+            </h2>
+          </div>
+
+          <!-- 3D Interactive Envelope Container -->
+          <div class="py-12 flex justify-center items-center perspective-1000">
+            <div id="envelope" class="envelope-wrapper relative w-80 md:w-96 h-56 bg-amber-900/60 rounded-2xl border-2 border-yellow-500/40 shadow-2xl shadow-yellow-500/10 cursor-pointer group hover:scale-105 transition-transform duration-300">
+              
+              <!-- Envelope Flap (Top Triangle) -->
+              <div class="envelope-flap absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-amber-800 to-amber-900 rounded-t-2xl border-b border-yellow-500/30 z-20 flex items-center justify-center">
+                <div class="w-10 h-10 rounded-full bg-yellow-500/20 border border-yellow-400/40 flex items-center justify-center text-yellow-300 shadow-inner">
+                  <i class="fa-solid fa-heart text-amber-300"></i>
+                </div>
+              </div>
+
+              <!-- Envelope Pocket (Bottom/Front overlay) -->
+              <div class="absolute inset-0 bg-gradient-to-t from-amber-950 via-amber-900/90 to-transparent rounded-2xl z-20 pointer-events-none flex items-end justify-center pb-4 border-t border-yellow-500/20">
+                <span class="text-xs text-yellow-300/80 font-serif italic">Presiona para desdoblar</span>
+              </div>
+
+              <!-- Inside Foldable Letter Paper -->
+              <div id="letterPaper" class="letter-paper absolute inset-x-4 top-4 bottom-4 glass-card bg-amber-50/95 text-gray-900 p-6 rounded-xl shadow-xl z-10 overflow-y-auto max-h-[380px] pointer-events-auto border border-yellow-300">
+                <div class="flex items-center justify-between border-b border-amber-900/20 pb-2 mb-3">
+                  <span class="font-serif font-bold text-amber-900 text-sm">21 de Septiembre</span>
+                  <button id="editLetterBtn" class="text-xs text-amber-800 hover:text-amber-950 underline font-semibold">Editar Carta</button>
+                </div>
+                
+                <div id="typewriterTarget" class="font-cursive text-xl md:text-2xl leading-relaxed text-amber-950 whitespace-pre-line text-left">
+                  <!-- Typewriter or Custom Text inserted via JS -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Letter Edit Modal (Hidden) -->
+          <div id="letterEditModal" class="hidden glass-panel p-6 rounded-2xl max-w-lg mx-auto space-y-4 text-left border border-yellow-500/40">
+            <h4 class="font-serif font-bold text-yellow-300 text-lg">Personalizar la Carta de Amor</h4>
+            <textarea id="letterInput" rows="6" class="w-full bg-darkObsidian/90 border border-yellow-500/40 rounded-xl p-3 text-yellow-100 font-cursive text-xl focus:outline-none focus:border-yellow-400"></textarea>
+            <div class="flex justify-end space-x-3">
+              <button id="closeLetterEditBtn" class="px-4 py-2 rounded-xl bg-gray-700/60 text-gray-300 text-xs font-semibold">Cancelar</button>
+              <button id="saveLetterBtn" class="px-4 py-2 rounded-xl bg-yellow-500 text-darkObsidian font-bold text-xs">Guardar Carta</button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: MINI-JUEGO "JARDÍN DE AMAR" ================= -->
+      <section id="tab-juego" class="tab-content hidden space-y-8 animate-fade-in">
+        <div class="glass-panel p-6 md:p-8 rounded-3xl space-y-6 text-center">
+          <div>
+            <span class="inline-block py-1 px-4 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              Juego Interactivo • Encuentra las Palabras
+            </span>
+            <h2 class="text-2xl md:text-4xl font-serif font-bold text-yellow-300 glow-text-gold">
+              Sopa de Letras: Jardín de Amar 🌼
+            </h2>
+            <p class="text-gray-300 text-xs md:text-sm mt-1">
+              Encuentra las 5 palabras románticas escondidas en la cuadrícula. ¡Haz florecer el jardín!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+            
+            <!-- Word Checklist / Blooming Flowers Container -->
+            <div class="glass-card p-4 rounded-2xl space-y-4 text-left order-2 md:order-1">
+              <h3 class="font-serif font-bold text-yellow-200 text-sm border-b border-yellow-500/20 pb-2">
+                Palabras por descubrir:
+              </h3>
+              <ul id="wordChecklist" class="space-y-2">
+                <!-- JS dynamically renders checklist -->
+              </ul>
+
+              <div class="pt-2 border-t border-yellow-500/20">
+                <span class="text-xs text-yellow-200/70 block mb-2">Progreso del Jardín:</span>
+                <div class="w-full bg-darkObsidian h-3 rounded-full overflow-hidden border border-yellow-500/30 p-0.5">
+                  <div id="gameProgressBar" class="h-full bg-gradient-to-r from-yellow-500 to-amber-400 rounded-full transition-all duration-500 w-0"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Letter Grid Area -->
+            <div class="md:col-span-2 glass-card p-4 md:p-6 rounded-2xl flex flex-col items-center justify-center order-1 md:order-2">
+              <div id="wordGridContainer" class="grid grid-cols-8 gap-1.5 md:gap-2 max-w-xs md:max-w-md w-full mx-auto select-none">
+                <!-- JS renders 8x8 matrix cells -->
+              </div>
+              <p class="text-[11px] text-yellow-300/60 mt-3 italic">
+                Sugerencia: Toca o arrastra sobre las letras de la palabra para seleccionarla.
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Victory Modal Overlay (Hidden initially) -->
+          <div id="gameVictoryModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+            <div class="glass-panel p-8 rounded-3xl max-w-md w-full text-center space-y-6 border-2 border-yellow-400 shadow-2xl animate-bloom">
+              <div class="w-20 h-20 mx-auto rounded-full bg-yellow-500/20 border-2 border-yellow-400 flex items-center justify-center text-4xl text-yellow-300 shadow-lg glow-flower">
+                🌻
+              </div>
+              <div>
+                <h3 class="text-2xl font-serif font-bold text-yellow-300 glow-text-gold">¡Jardín Florecido por Completo!</h3>
+                <p class="text-gray-200 text-sm mt-2 font-cursive text-xl">
+                  "Has encontrado todas las palabras románticas. Así como este jardín florece, mi amor por ti florece más fuerte cada día."
+                </p>
+              </div>
+              <button id="restartGameBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-yellow-500 to-amber-500 text-darkObsidian font-bold text-sm shadow-lg shadow-yellow-500/30 hover:scale-105 transition">
+                Jugar de Nuevo ✨
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: JARDÍN DE PROMESAS ================= -->
+      <section id="tab-promesas" class="tab-content hidden space-y-8 animate-fade-in">
+        <div class="glass-panel p-6 md:p-10 rounded-3xl space-y-6 text-center">
+          <div>
+            <span class="inline-block py-1 px-4 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-xs font-semibold uppercase tracking-wider mb-2">
+              Jardín Nocturno • Razones y Promesas
+            </span>
+            <h2 class="text-3xl md:text-4xl font-serif font-bold text-yellow-300 glow-text-gold">
+              Nuestras Promesas de Amor 🌸
+            </h2>
+            <p class="text-gray-300 text-xs md:text-sm mt-1 max-w-md mx-auto">
+              Haz clic en cada capullo de flor para hacerla florecer y revelar una promesa especial. Puedes añadir las tuyas.
+            </p>
+          </div>
+
+          <!-- Add Promise Button -->
+          <div class="flex justify-end">
+            <button id="openAddPromiseModal" class="px-4 py-2 rounded-xl bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300 text-xs font-semibold border border-yellow-500/40 flex items-center space-x-2 transition">
+              <i class="fa-solid fa-plus text-yellow-400"></i>
+              <span>Añadir Nueva Promesa</span>
+            </button>
+          </div>
+
+          <!-- Promises Flower Grid -->
+          <div id="promisesContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <!-- JS dynamically populates interactive flower cards -->
+          </div>
+
+        </div>
+
+        <!-- Add Promise Modal -->
+        <div id="addPromiseModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+          <div class="glass-panel p-6 rounded-3xl max-w-md w-full space-y-4 border border-yellow-500/40">
+            <h3 class="font-serif font-bold text-lg text-yellow-300">Añadir Promesa al Jardín</h3>
+            <div>
+              <label class="block text-xs text-gray-300 mb-1">Título / Razón:</label>
+              <input id="promiseTitleInput" type="text" placeholder="Ej: Promesa #7..." class="w-full bg-darkObsidian/90 border border-yellow-500/30 rounded-xl p-3 text-yellow-100 text-sm focus:outline-none focus:border-yellow-400 mb-3">
+              <label class="block text-xs text-gray-300 mb-1">Tu Promesa o Mensaje:</label>
+              <textarea id="promiseTextInput" rows="3" placeholder="Escribe aquí tu promesa especial..." class="w-full bg-darkObsidian/90 border border-yellow-500/30 rounded-xl p-3 text-yellow-100 font-cursive text-lg focus:outline-none focus:border-yellow-400"></textarea>
+            </div>
+            <div class="flex justify-end space-x-3">
+              <button id="closeAddPromiseBtn" class="px-4 py-2 rounded-xl bg-gray-700/60 text-gray-300 text-xs font-semibold">Cancelar</button>
+              <button id="savePromiseBtn" class="px-4 py-2 rounded-xl bg-yellow-500 text-darkObsidian font-bold text-xs">Guardar Promesa</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    // Default Storage Keys & States
+    const STORAGE_KEY_MAIN = "flores_amarillas_main_msg_v1";
+    const STORAGE_KEY_LETTER = "flores_amarillas_letter_msg_v1";
+    const STORAGE_KEY_PROMISES = "flores_amarillas_promises_v1";
+
+    const defaultMainMessage = `"En este 21 de septiembre, te regalo un ramo de flores amarillas que jamás se marchitarán. Cada pétalo lleva grabado un latido de mi corazón y la promesa de iluminar tus días siempre. Gracias por ser el sol más radiante de mi universo. Te amo infinitamente."`;
+
+    const defaultLetterMessage = `Mi amor hermoso,\n\nHoy 21 de septiembre, la costumbre dice que regalemos flores amarillas para llenar la vida de color, alegría y buenas energías. Pero para mí, este día es la excusa perfecta para recordarte cuánto significas en mi vida.\n\nEres mi luz en los momentos oscuros, mi sonrisa preferida y el sueño del que nunca quiero despertar. Este ramo virtual lleva impregnado todo mi cariño, mis pensamientos constantes y mis deseos de caminar siempre a tu lado.\n\nTe amo con todo mi ser. Happy Yellow Flowers Day! 💛✨`;
+
+    const defaultPromises = [
+      { id: 1, title: "Promesa de Sonrisas", text: "Prometo hacer todo lo posible por robarte una sonrisa sincera cada día de nuestras vidas.", bloomed: false },
+      { id: 2, title: "Promesa de Apoyo", text: "Prometo tomar tu mano fuertemente en tus días difíciles y celebrar juntos cada uno de tus triunfos.", bloomed: false },
+      { id: 3, title: "Promesa de Tiempo", text: "Prometo valorar cada segundo a tu lado como el tesoro más valioso del universo.", bloomed: false },
+      { id: 4, title: "Promesa de Ternura", text: "Prometo recordarte lo hermosa e increíble que eres, incluso cuando se te olvide.", bloomed: false },
+      { id: 5, title: "Promesa de Amor Eterno", text: "Prometo amarte con paciencia, entrega y gratitud, hoy y por siempre.", bloomed: false }
+    ];
+
+    // Sound System (Web Audio API Synthesizer)
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.3, vol = 0.15) {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(vol, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {
+        // Fallback silently if browser blocks sound
+      }
+    }
+
+    function playBloomChime() {
+      if (!soundEnabled) return;
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      notes.forEach((freq, index) => {
+        setTimeout(() => playTone(freq, 'sine', 0.5, 0.12), index * 90);
+      });
+    }
+
+    // Particle Canvas Animation System
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    const numParticles = 45;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class PetalParticle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = -20;
+        this.size = Math.random() * 8 + 6;
+        this.speedY = Math.random() * 1.2 + 0.6;
+        this.speedX = Math.random() * 0.8 - 0.4;
+        this.rotation = Math.random() * 360;
+        this.rotSpeed = Math.random() * 2 - 1;
+        this.opacity = Math.random() * 0.6 + 0.3;
+        this.color = Math.random() > 0.3 ? '#FFD700' : '#FFB703';
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += Math.sin(this.y * 0.01) + this.speedX;
+        this.rotation += this.rotSpeed;
+
+        if (this.y > canvas.height + 20) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.rotation * Math.PI) / 180);
+        ctx.globalAlpha = this.opacity;
+        ctx.fillStyle = this.color;
+
+        // Petal shape path
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(this.size / 2, -this.size, this.size, 0);
+        ctx.quadraticCurveTo(this.size / 2, this.size, 0, 0);
+        ctx.fill();
+
+        ctx.restore();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < numParticles; i++) {
+        const p = new PetalParticle();
+        p.y = Math.random() * canvas.height;
+        particles.push(p);
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    // Tab Navigation System
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const mobileMenu = document.getElementById('sidebar');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    function switchTab(targetTabId) {
+      playTone(440, 'sine', 0.1, 0.05);
+
+      // Update Nav Buttons Active Styling
+      navButtons.forEach(btn => {
+        const isTarget = btn.getAttribute('data-tab') === targetTabId;
+        if (isTarget) {
+          btn.classList.add('bg-yellow-500/20', 'text-yellow-300', 'border-yellow-500/30');
+          btn.classList.remove('text-gray-300', 'border-transparent');
+        } else {
+          btn.classList.remove('bg-yellow-500/20', 'text-yellow-300', 'border-yellow-500/30');
+          btn.classList.add('text-gray-300', 'border-transparent');
+        }
+      });
+
+      // Show/Hide Tabs
+      tabContents.forEach(tab => {
+        if (tab.id === `tab-${targetTabId}`) {
+          tab.classList.remove('hidden');
+          tab.classList.add('block');
+        } else {
+          tab.classList.add('hidden');
+          tab.classList.remove('block');
+        }
+      });
+
+      // Close mobile menu if open
+      closeMobileSidebar();
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.getAttribute('data-tab');
+        switchTab(tabId);
+      });
+    });
+
+    // Mobile Navigation Controls
+    document.getElementById('toggleMobileMenu').addEventListener('click', () => {
+      mobileMenu.classList.toggle('-translate-x-full');
+      mobileOverlay.classList.toggle('hidden');
+    });
+
+    function closeMobileSidebar() {
+      mobileMenu.classList.add('-translate-x-full');
+      mobileOverlay.classList.add('hidden');
+    }
+
+    mobileOverlay.addEventListener('click', closeMobileSidebar);
+
+    // Audio Toggle Handler
+    const toggleSoundBtn = document.getElementById('toggleSoundBtn');
+    const soundDot = document.getElementById('soundDot');
+
+    toggleSoundBtn.addEventListener('click', () => {
+      soundEnabled = !soundEnabled;
+      if (soundEnabled) {
+        toggleSoundBtn.classList.remove('justify-start');
+        toggleSoundBtn.classList.add('justify-end');
+        soundDot.classList.remove('bg-gray-400');
+        soundDot.classList.add('bg-yellow-400');
+        playTone(600, 'sine', 0.15);
+      } else {
+        toggleSoundBtn.classList.remove('justify-end');
+        toggleSoundBtn.classList.add('justify-start');
+        soundDot.classList.remove('bg-yellow-400');
+        soundDot.classList.add('bg-gray-400');
+      }
+    });
+
+    // Tab 1: Interactive Flowers & Editable Text
+    const mainTextDisplay = document.getElementById('mainTextDisplay');
+    const mainTextEditContainer = document.getElementById('mainTextEditContainer');
+    const mainTextInput = document.getElementById('mainTextInput');
+    const editMainTextBtn = document.getElementById('editMainTextBtn');
+    const saveMainTextBtn = document.getElementById('saveMainTextBtn');
+    const cancelMainTextBtn = document.getElementById('cancelMainTextBtn');
+
+    function loadMainText() {
+      const saved = localStorage.getItem(STORAGE_KEY_MAIN);
+      mainTextDisplay.innerText = saved ? saved : defaultMainMessage;
+    }
+
+    editMainTextBtn.addEventListener('click', () => {
+      mainTextInput.value = mainTextDisplay.innerText;
+      mainTextDisplay.classList.add('hidden');
+      mainTextEditContainer.classList.remove('hidden');
+    });
+
+    cancelMainTextBtn.addEventListener('click', () => {
+      mainTextEditContainer.classList.add('hidden');
+      mainTextDisplay.classList.remove('hidden');
+    });
+
+    saveMainTextBtn.addEventListener('click', () => {
+      const val = mainTextInput.value.trim();
+      if (val) {
+        localStorage.setItem(STORAGE_KEY_MAIN, val);
+        mainTextDisplay.innerText = val;
+      }
+      mainTextEditContainer.classList.add('hidden');
+      mainTextDisplay.classList.remove('hidden');
+      playTone(587.33, 'sine', 0.2);
+    });
+
+    // Flower Node Click Sparkle Animation
+    document.querySelectorAll('.flower-node').forEach((node, index) => {
+      node.addEventListener('click', () => {
+        playBloomChime();
+        node.classList.add('animate-ping-once');
+        setTimeout(() => node.classList.remove('animate-ping-once'), 600);
+      });
+    });
+
+    // Tab 2: 3D Envelope & Typewriter Logic
+    const envelope = document.getElementById('envelope');
+    const typewriterTarget = document.getElementById('typewriterTarget');
+    const editLetterBtn = document.getElementById('editLetterBtn');
+    const letterEditModal = document.getElementById('letterEditModal');
+    const letterInput = document.getElementById('letterInput');
+    const saveLetterBtn = document.getElementById('saveLetterBtn');
+    const closeLetterEditBtn = document.getElementById('closeLetterEditBtn');
+
+    let letterOpened = false;
+
+    function getLetterText() {
+      return localStorage.getItem(STORAGE_KEY_LETTER) || defaultLetterMessage;
+    }
+
+    envelope.addEventListener('click', (e) => {
+      if (e.target.closest('#editLetterBtn') || e.target.closest('#letterEditModal')) return;
+      
+      if (!letterOpened) {
+        envelope.classList.add('envelope-open');
+        letterOpened = true;
+        playTone(392, 'sine', 0.25);
+        setTimeout(() => {
+          typewriteLetter(getLetterText());
+        }, 500);
+      }
+    });
+
+    function typewriteLetter(text) {
+      typewriterTarget.innerText = text;
+    }
+
+    editLetterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      letterInput.value = getLetterText();
+      letterEditModal.classList.remove('hidden');
+    });
+
+    closeLetterEditBtn.addEventListener('click', () => {
+      letterEditModal.classList.add('hidden');
+    });
+
+    saveLetterBtn.addEventListener('click', () => {
+      const val = letterInput.value.trim();
+      if (val) {
+        localStorage.setItem(STORAGE_KEY_LETTER, val);
+        typewriteLetter(val);
+      }
+      letterEditModal.classList.add('hidden');
+      playTone(523.25, 'sine', 0.2);
+    });
+
+    // Tab 3: Word Search Game Logic
+    const gameWords = ["AMOR", "FLORES", "SIEMPRE", "SONRISA", "JUNTOS"];
+    const gridDim = 8;
+    let wordGrid = [];
+    let selectedCells = [];
+    let foundWords = [];
+
+    const wordChecklist = document.getElementById('wordChecklist');
+    const wordGridContainer = document.getElementById('wordGridContainer');
+    const gameProgressBar = document.getElementById('gameProgressBar');
+    const gameVictoryModal = document.getElementById('gameVictoryModal');
+    const restartGameBtn = document.getElementById('restartGameBtn');
+
+    function initGame() {
+      foundWords = [];
+      selectedCells = [];
+      
+      // Setup blank grid
+      wordGrid = Array(gridDim).fill(null).map(() => Array(gridDim).fill(''));
+
+      // Place target words horizontally / vertically
+      const placements = [
+        { word: "AMOR", r: 0, c: 0, dir: "H" },
+        { word: "FLORES", r: 2, c: 1, dir: "H" },
+        { word: "SIEMPRE", r: 4, c: 0, dir: "H" },
+        { word: "SONRISA", r: 6, c: 1, dir: "H" },
+        { word: "JUNTOS", r: 1, c: 7, dir: "V" }
+      ];
+
+      placements.forEach(p => {
+        for (let i = 0; i < p.word.length; i++) {
+          if (p.dir === "H") wordGrid[p.r][p.c + i] = p.word[i];
+          else wordGrid[p.r + i][p.c] = p.word[i];
+        }
+      });
+
+      // Fill remaining empty cells with random letters
+      const alphabet = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+      for (let r = 0; r < gridDim; r++) {
+        for (let c = 0; c < gridDim; c++) {
+          if (!wordGrid[r][c]) {
+            wordGrid[r][c] = alphabet[Math.floor(Math.random() * alphabet.length)];
+          }
+        }
+      }
+
+      renderGrid();
+      renderChecklist();
+      updateProgressBar();
+    }
+
+    function renderChecklist() {
+      wordChecklist.innerHTML = "";
+      gameWords.forEach(w => {
+        const isFound = foundWords.includes(w);
+        const li = document.createElement('li');
+        li.className = `flex items-center space-x-2 text-xs font-semibold py-1 px-2 rounded-lg transition ${
+          isFound ? 'bg-yellow-500/20 text-yellow-300 line-through' : 'text-gray-300'
+        }`;
+        li.innerHTML = `
+          <i class="fa-solid ${isFound ? 'fa-circle-check text-yellow-400' : 'fa-circle text-gray-600'} text-sm"></i>
+          <span>${w}</span>
+        `;
+        wordChecklist.appendChild(li);
+      });
+    }
+
+    function renderGrid() {
+      wordGridContainer.innerHTML = "";
+      for (let r = 0; r < gridDim; r++) {
+        for (let c = 0; c < gridDim; c++) {
+          const cell = document.createElement('div');
+          cell.dataset.row = r;
+          cell.dataset.col = c;
+          cell.innerText = wordGrid[r][c];
+          cell.className = "word-grid-cell aspect-square rounded-xl bg-darkObsidian/90 border border-yellow-500/20 flex items-center justify-center font-bold text-sm md:text-base text-yellow-100/90 cursor-pointer hover:border-yellow-400";
+          
+          cell.addEventListener('click', () => handleCellClick(r, c, cell));
+          wordGridContainer.appendChild(cell);
+        }
+      }
+    }
+
+    function handleCellClick(r, c, cellEl) {
+      const idx = selectedCells.findIndex(item => item.r === r && item.c === c);
+      
+      if (idx >= 0) {
+        selectedCells.splice(idx, 1);
+        cellEl.classList.remove('selected');
+      } else {
+        selectedCells.push({ r, c, char: wordGrid[r][c], el: cellEl });
+        cellEl.classList.add('selected');
+        playTone(500 + selectedCells.length * 50, 'sine', 0.1);
+      }
+
+      checkWordMatch();
+    }
+
+    function checkWordMatch() {
+      const currentSelectedStr = selectedCells.map(item => item.char).join("");
+      const reverseSelectedStr = currentSelectedStr.split("").reverse().join("");
+
+      gameWords.forEach(w => {
+        if (!foundWords.includes(w) && (currentSelectedStr === w || reverseSelectedStr === w)) {
+          foundWords.push(w);
+          selectedCells.forEach(item => {
+            item.el.classList.remove('selected');
+            item.el.classList.add('found');
+          });
+          selectedCells = [];
+          
+          playBloomChime();
+          renderChecklist();
+          updateProgressBar();
+
+          if (foundWords.length === gameWords.length) {
+            setTimeout(() => {
+              gameVictoryModal.classList.remove('hidden');
+              playBloomChime();
+            }, 500);
+          }
+        }
+      });
+    }
+
+    function updateProgressBar() {
+      const pct = (foundWords.length / gameWords.length) * 100;
+      gameProgressBar.style.width = `${pct}%`;
+    }
+
+    restartGameBtn.addEventListener('click', () => {
+      gameVictoryModal.classList.add('hidden');
+      initGame();
+    });
+
+    // Tab 4: Promises Garden Logic
+    const promisesContainer = document.getElementById('promisesContainer');
+    const openAddPromiseModal = document.getElementById('openAddPromiseModal');
+    const addPromiseModal = document.getElementById('addPromiseModal');
+    const closeAddPromiseBtn = document.getElementById('closeAddPromiseBtn');
+    const savePromiseBtn = document.getElementById('savePromiseBtn');
+    const promiseTitleInput = document.getElementById('promiseTitleInput');
+    const promiseTextInput = document.getElementById('promiseTextInput');
+
+    function getPromises() {
+      const saved = localStorage.getItem(STORAGE_KEY_PROMISES);
+      return saved ? JSON.parse(saved) : defaultPromises;
+    }
+
+    function savePromises(promises) {
+      localStorage.setItem(STORAGE_KEY_PROMISES, JSON.stringify(promises));
+    }
+
+    function renderPromises() {
+      const list = getPromises();
+      promisesContainer.innerHTML = "";
+
+      list.forEach((p, index) => {
+        const card = document.createElement('div');
+        card.className = "glass-card p-5 rounded-2xl flex flex-col justify-between items-center text-center space-y-3 cursor-pointer group hover:border-yellow-400 transition";
+        
+        card.innerHTML = `
+          <div class="w-14 h-14 rounded-full bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-2xl group-hover:scale-110 transition duration-300 ${
+            p.bloomed ? 'glow-flower text-yellow-300' : 'text-yellow-500/60'
+          }">
+            ${p.bloomed ? '🌻' : '🌱'}
+          </div>
+          <div>
+            <h4 class="font-serif font-bold text-yellow-300 text-base">${p.title}</h4>
+            <p class="font-cursive text-lg text-yellow-100/90 mt-2 ${p.bloomed ? 'block' : 'hidden'} animate-fade-in">
+              "${p.text}"
+            </p>
+            <span class="text-[11px] text-yellow-300/60 italic block mt-1 ${p.bloomed ? 'hidden' : 'block'}">
+              Haz clic para florecer
+            </span>
+          </div>
+        `;
+
+        card.addEventListener('click', () => {
+          if (!p.bloomed) {
+            p.bloomed = true;
+            list[index] = p;
+            savePromises(list);
+            playBloomChime();
+            renderPromises();
+          }
+        });
+
+        promisesContainer.appendChild(card);
+      });
+    }
+
+    openAddPromiseModal.addEventListener('click', () => {
+      addPromiseModal.classList.remove('hidden');
+    });
+
+    closeAddPromiseBtn.addEventListener('click', () => {
+      addPromiseModal.classList.add('hidden');
+    });
+
+    savePromiseBtn.addEventListener('click', () => {
+      const title = promiseTitleInput.value.trim();
+      const text = promiseTextInput.value.trim();
+
+      if (title && text) {
+        const list = getPromises();
+        list.push({ id: Date.now(), title, text, bloomed: true });
+        savePromises(list);
+        renderPromises();
+
+        promiseTitleInput.value = "";
+        promiseTextInput.value = "";
+        addPromiseModal.classList.add('hidden');
+        playTone(659.25, 'sine', 0.2);
+      }
+    });
+
+    window.onload = function () {
+      initParticles();
+      animateParticles();
+      loadMainText();
+      initGame();
+      renderPromises();
+    };
+  </script>
+</body>
+</html>
